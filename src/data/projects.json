@@ -1,0 +1,44 @@
+[
+  {
+    "id": "cloud-stash",
+    "title": "Cloud Stash",
+    "description": "High-performance cloud storage platform with SRE-focused observability.",
+    "tech": ["Next.js", "Go", "Supabase", "Redis"],
+    "metrics": {
+      "lighthouse": 98,
+      "uptime": "99.9%"
+    },
+    "links": {
+      "github": "https://github.com/akaka/cloud-stash",
+      "live": "https://cloudstash.com"
+    },
+    "image": "/projects/cloud-stash.png"
+  },
+  {
+    "id": "election-system",
+    "title": "Live Election System",
+    "description": "Real-time, multi-tenant election management platform with QR-based verification.",
+    "tech": ["React", "Node.js", "PostgreSQL", "Socket.io"],
+    "metrics": {
+      "concurrency": "10k+",
+      "latency": "<50ms"
+    },
+    "links": {
+      "github": "https://github.com/akaka/election-system"
+    },
+    "image": "/projects/election-system.png"
+  },
+  {
+    "id": "id-card-system",
+    "title": "ID Card Verification",
+    "description": "Secure, biometric-linked ID card system for institutional access control.",
+    "tech": ["Python", "TensorFlow", "FastAPI"],
+    "metrics": {
+      "accuracy": "99.2%"
+    },
+    "links": {
+      "github": "https://github.com/akaka/id-card-system"
+    },
+    "image": "/projects/id-card-system.png"
+  }
+]
