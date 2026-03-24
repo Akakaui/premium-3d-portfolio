@@ -1,19 +1,20 @@
 'use client'
 
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Environment, PerspectiveCamera, ContactShadows, Grid } from '@react-three/drei'
+import { OrbitControls, Environment, PerspectiveCamera, ContactShadows, Grid, Float } from '@react-three/drei'
 import { Suspense } from 'react'
 import { Physics } from '@react-three/rapier'
 import { useBlueprint } from '@/hooks/useBlueprint'
 import PhysicsPlayground from './PhysicsPlayground'
+import Avatar from './Avatar'
 
 export default function Scene() {
   const { isBlueprint } = useBlueprint()
 
   return (
     <div className="fixed inset-0 pointer-events-none">
-      <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 0, 5], fov: 45 }}>
-        <PerspectiveCamera makeDefault position={[0, 0, 6]} fov={45} />
+      <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 0, 6], fov: 45 }}>
+        <PerspectiveCamera makeDefault position={[0, 0, 7]} fov={45} />
         <Suspense fallback={null}>
           <ambientLight intensity={isBlueprint ? 0.2 : 0.5} />
           <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
@@ -22,6 +23,12 @@ export default function Scene() {
           <Physics gravity={[0, -9.81, 0]} debug={isBlueprint}>
             <PhysicsPlayground />
           </Physics>
+
+          {!isBlueprint && (
+            <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
+              <Avatar />
+            </Float>
+          )}
 
           {/* Blueprint Grid */}
           {isBlueprint && (

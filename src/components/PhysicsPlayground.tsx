@@ -33,10 +33,15 @@ function ProjectBlock({ position, title, color = "#007AFF" }: ProjectBlockProps)
       colliders="cuboid" 
       restitution={0.5} 
       friction={1}
-      onClick={handlePointerDown}
     >
       <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-        <mesh castShadow>
+        <mesh 
+          castShadow 
+          onPointerDown={(e) => {
+            e.stopPropagation()
+            handlePointerDown()
+          }}
+        >
           <boxGeometry args={[1, 0.6, 1]} />
           <meshStandardMaterial color={color} />
           <Text
