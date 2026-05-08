@@ -1,8 +1,7 @@
 'use client'
 
-import { RigidBody, CuboidCollider } from '@react-three/rapier'
-import { useMemo, useRef } from 'react'
-import * as THREE from 'three'
+import { RigidBody, CuboidCollider, RapierRigidBody } from '@react-three/rapier'
+import { useRef } from 'react'
 import { Text, Float } from '@react-three/drei'
 import projects from '@/data/projects.json'
 
@@ -13,7 +12,7 @@ interface ProjectBlockProps {
 }
 
 function ProjectBlock({ position, title, color = "#007AFF" }: ProjectBlockProps) {
-  const rigidBodyRef = useRef<any>(null)
+  const rigidBodyRef = useRef<RapierRigidBody>(null)
 
   const handlePointerDown = () => {
     if (rigidBodyRef.current) {
@@ -50,7 +49,6 @@ function ProjectBlock({ position, title, color = "#007AFF" }: ProjectBlockProps)
             color="white"
             anchorX="center"
             anchorY="middle"
-            font="/fonts/Geist-Bold.ttf"
           >
             {title}
           </Text>

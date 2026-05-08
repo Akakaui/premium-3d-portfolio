@@ -8,7 +8,7 @@ import projects from '@/data/projects.json'
 import { ArrowRight, Github, Mail, Linkedin } from 'lucide-react'
 
 export default function Home() {
-  const [selectedProject, setSelectedProject] = useState<any | null>(null)
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
 
   return (
     <main className="relative min-h-screen bg-[#FFFFFF] text-[#1D1D1F] selection:bg-[#007AFF] selection:text-white transition-colors duration-500">
