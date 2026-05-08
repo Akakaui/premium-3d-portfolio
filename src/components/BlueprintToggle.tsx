@@ -22,18 +22,24 @@ export default function BlueprintToggle() {
           isBlueprint ? "bg-[#1D1D1F]" : "bg-[#F5F5F7] shadow-sm border border-[#D2D2D7]"
         )}
       >
-        <div className={cn(
-          "flex items-center gap-2 px-4 py-2 rounded-full font-medium text-sm transition-all duration-500",
-          !isBlueprint ? "bg-white text-[#1D1D1F] shadow-sm" : "text-[#86868B]"
-        )}>
+        <div
+          title="Standard high-fidelity view"
+          className={cn(
+            "flex items-center gap-2 px-4 py-2 rounded-full font-medium text-sm transition-all duration-500",
+            !isBlueprint ? "bg-white text-[#1D1D1F] shadow-sm" : "text-[#86868B]"
+          )}
+        >
           <Layout className="w-4 h-4" />
           Premium
         </div>
         
-        <div className={cn(
-          "flex items-center gap-2 px-4 py-2 rounded-full font-medium text-sm transition-all duration-500",
-          isBlueprint ? "bg-[#007AFF] text-white shadow-lg shadow-[#007AFF]/20" : "text-[#86868B]"
-        )}>
+        <div
+          title="Technical debug view with physics & grid"
+          className={cn(
+            "flex items-center gap-2 px-4 py-2 rounded-full font-medium text-sm transition-all duration-500",
+            isBlueprint ? "bg-[#007AFF] text-white shadow-lg shadow-[#007AFF]/20" : "text-[#86868B]"
+          )}
+        >
           <Codepen className="w-4 h-4" />
           Blueprint
         </div>
