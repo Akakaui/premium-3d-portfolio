@@ -12,7 +12,7 @@ export default function Scene() {
   const { isBlueprint } = useBlueprint()
 
   return (
-    <div className="fixed inset-0 pointer-events-none">
+    <div className="fixed inset-0">
       <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 0, 6], fov: 45 }}>
         <PerspectiveCamera makeDefault position={[0, 0, 7]} fov={45} />
         <Suspense fallback={null}>

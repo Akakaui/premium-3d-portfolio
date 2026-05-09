@@ -1,10 +1,22 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Github, ExternalLink, Zap, Shield, Cpu } from 'lucide-react'
+import { X, Github, ExternalLink } from 'lucide-react'
+import Image from 'next/image'
 
 interface ProjectDetailsProps {
-  project: any | null
+  project: {
+    id: string
+    title: string
+    description: string
+    tech: string[]
+    metrics: Record<string, string | number | undefined>
+    links: {
+      github: string
+      live?: string
+    }
+    image: string
+  } | null
   onClose: () => void
 }
 
@@ -40,12 +52,13 @@ export default function ProjectDetails({ project, onClose }: ProjectDetailsProps
 
           {/* Left Side: Visual/Media */}
           <div className="w-full md:w-1/2 bg-[#F5F5F7] flex items-center justify-center p-8">
-            <div className="w-full aspect-video bg-white rounded-2xl shadow-sm border border-[#D2D2D7] overflow-hidden flex items-center justify-center text-[#86868B]">
-              {/* Image would go here */}
-              <img 
-                src={project.image || "https://placehold.co/600x400/F5F5F7/86868B?text=Project+Visual"} 
+            <div className="relative w-full aspect-video bg-white rounded-2xl shadow-sm border border-[#D2D2D7] overflow-hidden flex items-center justify-center text-[#86868B]">
+              <Image
+                src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                unoptimized
               />
             </div>
           </div>
@@ -62,7 +75,7 @@ export default function ProjectDetails({ project, onClose }: ProjectDetailsProps
 
             {/* Technical Chips */}
             <div className="flex flex-wrap gap-2 mb-10">
-              {project.tech.map((t: string) => (
+              {project.tech.map((t) => (
                 <span key={t} className="px-3 py-1 rounded-md bg-[#F5F5F7] text-[#1D1D1F] text-xs font-medium">
                   {t}
                 </span>
@@ -71,12 +84,15 @@ export default function ProjectDetails({ project, onClose }: ProjectDetailsProps
 
             {/* Metrics/Stats */}
             <div className="grid grid-cols-2 gap-4 mb-10">
-              {Object.entries(project.metrics).map(([key, value]: [string, any]) => (
-                <div key={key} className="p-4 rounded-2xl bg-[#F5F5F7] border border-[#D2D2D7]/50 flex flex-col gap-1">
-                  <div className="text-[10px] text-[#86868B] uppercase font-bold tracking-widest">{key}</div>
-                  <div className="text-xl font-bold text-[#1D1D1F]">{value}</div>
-                </div>
-              ))}
+              {Object.entries(project.metrics).map(([key, value]) => {
+                if (value === undefined) return null;
+                return (
+                  <div key={key} className="p-4 rounded-2xl bg-[#F5F5F7] border border-[#D2D2D7]/50 flex flex-col gap-1">
+                    <div className="text-[10px] text-[#86868B] uppercase font-bold tracking-widest">{key}</div>
+                    <div className="text-xl font-bold text-[#1D1D1F]">{value}</div>
+                  </div>
+                )
+              })}
             </div>
 
             {/* Action Buttons */}
